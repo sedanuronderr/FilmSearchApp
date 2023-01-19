@@ -7,6 +7,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.seda.filmsearchapp.common.util.Resource
+import com.seda.filmsearchapp.data.model.DetailResponse
 import com.seda.filmsearchapp.data.model.FilmResult
 import com.seda.filmsearchapp.data.model.Search
 import com.seda.filmsearchapp.data.repository.SearchScreenRepository
@@ -22,12 +23,13 @@ import javax.inject.Inject
 
 @HiltViewModel
 class SearchMvvm @Inject constructor(private val repository: SearchScreenRepository):ViewModel()  {
-    val _countries = MutableLiveData<Resource<FilmResult>>()
+  private  val _countries = MutableLiveData<Resource<FilmResult>>()
     val responseTvShow: LiveData<Resource<FilmResult>>
         get() = _countries
-    private val compositeDisposable = CompositeDisposable()
 
-     var _isLoading = MutableLiveData<Boolean>()
+    private  val _movies = MutableLiveData<Resource<DetailResponse>>()
+    val responsemovies: LiveData<Resource<DetailResponse>>
+        get() = _movies
 
 @SuppressLint("SuspiciousIndentation")
 fun loadfilm(kelime:String){
@@ -35,17 +37,15 @@ fun loadfilm(kelime:String){
      val deger =  repository.getFilms(kelime)
 
                _countries.value = deger
-
-Log.e("cevap","${deger}")
-
-
-
-
-
      }
+    }
 
-}
+    fun getmovies(movieid:String){
 
+        viewModelScope.launch {
 
-
-}
+            val deger1 = repository.getDetail(movieid)
+            _movies.value =deger1
+        }
+    }
+  }

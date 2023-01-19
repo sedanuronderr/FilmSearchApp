@@ -16,8 +16,8 @@ class SearchRecyclerView:RecyclerView.Adapter<SearchRecyclerView.SearchViewHolde
  var onLongClickListener:((Search)->Unit)?=null
     private val filmList = ArrayList<Search>()
     var filmFilterList = ArrayList<Search>()
-    class SearchViewHolder(val binding: FilmCardBinding):RecyclerView.ViewHolder(binding.root) {
 
+    class SearchViewHolder(val binding: FilmCardBinding):RecyclerView.ViewHolder(binding.root) {
 
     }
 
@@ -26,6 +26,7 @@ filmList.clear()
         filmList.addAll(list)
         notifyDataSetChanged()
     }
+
     init {
         filmFilterList = filmList
     }
@@ -40,6 +41,8 @@ filmList.clear()
         Glide.with(holder.itemView)
             .load(film.Poster)
             .into(holder.binding.filmimage)
+
+
        holder.itemView.setOnClickListener {
            onLongClickListener.let {
                if (it != null) {

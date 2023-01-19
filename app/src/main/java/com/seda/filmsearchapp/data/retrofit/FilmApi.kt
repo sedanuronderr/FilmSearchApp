@@ -1,6 +1,7 @@
 package com.seda.filmsearchapp.data.retrofit
 
 import com.seda.filmsearchapp.common.util.Constants
+import com.seda.filmsearchapp.data.model.DetailResponse
 import com.seda.filmsearchapp.data.model.FilmResult
 import com.seda.filmsearchapp.data.model.Search
 import io.reactivex.Single
@@ -19,5 +20,5 @@ interface FilmApi {
     @GET("?apikey=fbdd89ef")
    suspend fun getMovie(
         @Query("i") movieId: String,
-                 ): Response<FilmResult>
+    ): Response<DetailResponse>
 }

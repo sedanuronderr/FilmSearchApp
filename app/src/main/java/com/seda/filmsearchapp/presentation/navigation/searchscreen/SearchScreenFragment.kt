@@ -22,6 +22,7 @@ import dagger.hilt.android.AndroidEntryPoint
 class SearchScreenFragment : Fragment() {
 private lateinit var binding:FragmentSearchScreenBinding
 private  val filmmvvm:SearchMvvm by viewModels()
+    var gelenDeger :String=""
 private lateinit var filmadapter:SearchRecyclerView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,7 +43,7 @@ private lateinit var filmadapter:SearchRecyclerView
         super.onViewCreated(view, savedInstanceState)
 
         setupRecyclerView(view)
-observefavorites()
+        observefavorites()
 
 
         with(binding){
@@ -66,11 +67,15 @@ observefavorites()
             })
 
         }
+
+        filmmvvm.responseTvShow.observe(viewLifecycleOwner, Observer {
+            it.data?.Search?.map {
+                gelenDeger = it.imdbID
+            }
+        })
     }
 
     private fun setupRecyclerView(view: View) {
-
-
 
         binding.recyclerView.apply {
 
@@ -78,23 +83,17 @@ observefavorites()
             filmadapter = SearchRecyclerView()
 
             filmadapter.onLongClickListener = {
-                val gecis = SearchScreenFragmentDirections.actionSearchScreenFragmentToFilmDetailFragment()
+                val gecis = SearchScreenFragmentDirections.actionSearchScreenFragmentToFilmDetailFragment(gelenDeger)
                 Navigation.findNavController(view).navigate(gecis)
 
-                Toast.makeText(requireContext(),"basıldı",Toast.LENGTH_LONG).show()
             }
             adapter = filmadapter
             setHasFixedSize(true)
         }
 
-
-
-
     }
 
     private fun observefavorites() {
-
-
     filmmvvm.responseTvShow.observe(viewLifecycleOwner, Observer {
 
              when(it.status){
@@ -116,13 +115,7 @@ observefavorites()
                  }
 
              }
-
-
-
-
             })
     }
-
-
 
 }

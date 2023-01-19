@@ -20,5 +20,12 @@
         android:id="@+id/filmDetailFragment"
         android:name="com.seda.filmsearchapp.presentation.navigation.filmdetail.FilmDetailFragment"
         android:label="fragment_film_detail"
-        tools:layout="@layout/fragment_film_detail" />
+        tools:layout="@layout/fragment_film_detail" >
+        <argument
+            android:name="getid"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_filmDetailFragment_to_searchScreenFragment"
+            app:destination="@id/searchScreenFragment" />
+    </fragment>
 </navigation>
