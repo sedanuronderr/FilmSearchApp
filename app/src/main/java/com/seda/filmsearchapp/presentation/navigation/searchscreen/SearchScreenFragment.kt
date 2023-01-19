@@ -74,7 +74,6 @@ private lateinit var filmadapter:SearchRecyclerView
             }
         })
     }
-
     private fun setupRecyclerView(view: View) {
 
         binding.recyclerView.apply {

@@ -31,6 +31,7 @@ filmList.clear()
         filmFilterList = filmList
     }
 
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): SearchViewHolder {
      return  SearchViewHolder(FilmCardBinding.inflate(LayoutInflater.from(parent.context),parent,false))
     }

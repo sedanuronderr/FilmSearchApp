@@ -20,7 +20,6 @@ class SplashScreenActivity : AppCompatActivity() {
                 startActivity(intent)
 
             }
-
             override fun onTick(p0: Long) {
                 Log.d("SplashActivity", p0.toString())
             }

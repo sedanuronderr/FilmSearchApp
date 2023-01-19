@@ -40,6 +40,7 @@ fun loadfilm(kelime:String){
      }
     }
 
+
     fun getmovies(movieid:String){
 
         viewModelScope.launch {
