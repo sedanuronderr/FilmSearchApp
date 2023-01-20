@@ -68,11 +68,7 @@ private lateinit var filmadapter:SearchRecyclerView
 
         }
 
-        filmmvvm.responseTvShow.observe(viewLifecycleOwner, Observer {
-            it.data?.Search?.map {
-                gelenDeger = it.imdbID
-            }
-        })
+
     }
     private fun setupRecyclerView(view: View) {
 
@@ -82,6 +78,7 @@ private lateinit var filmadapter:SearchRecyclerView
             filmadapter = SearchRecyclerView()
 
             filmadapter.onLongClickListener = {
+                gelenDeger =  it.imdbID
                 val gecis = SearchScreenFragmentDirections.actionSearchScreenFragmentToFilmDetailFragment(gelenDeger)
                 Navigation.findNavController(view).navigate(gecis)
 
