@@ -32,14 +32,14 @@ class FilmDetailFragment : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         binding = FragmentFilmDetailBinding.inflate(layoutInflater,container,false)
-return binding.root
+        return binding.root
     }
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
        gelenid = bundle.getid
-filmmvvm.getmovies(gelenid)
+        filmmvvm.getmovies(gelenid)
         Log.e("gelen","${gelenid}")
         observefavorites()
 
@@ -65,8 +65,6 @@ filmmvvm.getmovies(gelenid)
                      binding.genre.text = it.data?.Genre
                      binding.topic.text = it.data?.Plot
 
-
-
                 }
                 Status.ERROR -> {
                     Toast.makeText(requireContext(), it.message ?: "Error", Toast.LENGTH_LONG)
@@ -77,6 +75,5 @@ filmmvvm.getmovies(gelenid)
             }
         })
     }
-
 
 }
