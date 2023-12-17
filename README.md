@@ -1,5 +1,5 @@
 # FilmSearchApp
-
+## MVVM ,Dagger-Hilt ,Flow & LiveData,Navigation Component, Coroutines ,Room Jetpack libraries were used in the project
 
 <table>
 
